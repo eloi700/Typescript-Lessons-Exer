@@ -39,3 +39,36 @@
     which means that VS Code will use the TS Compiler to Build the Application using this configuration file.
 **  Go back to index.ts file and click the Launch Program Play shortcut above.
 
+**  TYPESCRIPT BUILT-IN TYPES
+**  any - a variable not been annotated or initialize with value. Example: let level; ---NO NO TYPE
+**  arrays
+**  unknown
+**  never
+**  arrays
+**  enum
+**  tuple
+
+**  In Typescript a number can be separated by UNDERSCORE(_) to make it readable. Example: 123_456_789
+
+**  There's no need to ANNOTATE always the variable.  The TS compiler can infer or detect the type of the variable based on a value. Example: let sales = 123_456_789 (hover in sales, it shows a number).
+
+**  Ctrl + P - to go to Search
+
+**  tsconfig.json - "noImplicitAny": true, compiler will complain IMPLICIT any tags otherwise if it is false, the compiler will show only a 3 dots under on it. CAUTION: comment it or use it if you know what you are doing :)
+
+**  node is a js engine to run js application - example command to run
+    node helloworld/dist/index.js
+
+**  Windows Build - Build a JS file - Ctrl+Shift+B or
+**  tsc -p ./helloworld/tsconfig (Typescript Compiler of Project)
+
+**  TURN ON - "noUnusedParameters": true, /* Raise an error when a function parameter isn't read. */
+
+**  TURN ON - "noImplicitReturns": true,  /* Enable error reporting for codepaths that do not explicitly return in a function. */
+
+**  TURN ON - // "noUnusedLocals": true,  /* Enable error reporting when local variables aren't read. -UNUSED VARIABLES*/
+
+**  adding ? at the end of the variable makes it Optional
+    example - taxYear?:number ... if((taxYear || 2022) < 2022) or
+    taxYear = 2022 : number however ... if(taxYear < 2022)
+

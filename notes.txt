@@ -1,0 +1,41 @@
+**  Installation of Typescript (Nodejs.org - Node Package Manager)
+    npm i -g typescript
+
+**  Typescript Version (4.8.3)
+    tsc -v
+
+**  Open Terminal Window (Ctrl-`(Backtick))
+
+**  Compile Using Typescript Compiler
+    tsc index.ts
+
+**  Configure Typescript Compiler to target a Newer JS Version
+    In this, it creates a new tsconfig.json with target es2016 etc.
+    tsc --init
+
+**  in tsconfig.json - "target": "es2016" remove and press Ctrl+Space, it
+    will show the other availabe valid - esVersion.
+
+**  IMPORTANT SETTINGS TO CONFIGURE IN tsconfig.json
+**  /* Modules */---Ctrl + / - Remove the // in tsconfig.json.
+    Example: rootDir: "./" represents the Current Folder (./), Sub-Folder (./src) -> Parent is helloworld and Child is src
+
+**  */EMIT*/ --/ "outDir": "./"--Specify an output folder for all
+    emitted  (JS) files. Example: "outDir": "./dist"
+
+**  "removeComments": true, - ENABLING this from EMIT will remove the
+    comments from TS.
+
+**  "noEmitOnError": true, ENABLING this will NOT GENERATE JS if there's
+    ERROR in Typescript
+
+**  DEBUGGING TYPESCRIPT IN VS CODE
+**  "sourceMap": true, - ENABLING this from EMIT will specify how each line of the Typescript code MAPS to the generated JS Code. (index.js.map)
+**  Insert / Click a BreakPoint in index.ts file (color red before the line number).
+**  Click the Debug Panel the Right s Icon left (Ctrl+Shift+D).
+**  Click under Run and Debug the CREATE A LAUNCH.JSON FILE then NODE.JS to create LAUNCH.JSON file.
+**  From launch.json file, under PROGRAM, add below line:
+    "preLaunchTask": "tsc: build - tsconfig.json",
+    which means that VS Code will use the TS Compiler to Build the Application using this configuration file.
+**  Go back to index.ts file and click the Launch Program Play shortcut above.
+

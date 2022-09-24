@@ -59,8 +59,10 @@
 **  node is a js engine to run js application - example command to run
     node helloworld/dist/index.js
 
+**  BUILD & RUN
 **  Windows Build - Build a JS file - Ctrl+Shift+B or
-**  tsc -p ./helloworld/tsconfig (Typescript Compiler of Project)
+**  BUILD -- tsc -p ./helloworld/tsconfig.json (TS Compiler of Project)
+**  RUN -- node helloworld/dist/index.js
 
 **  TURN ON - "noUnusedParameters": true, /* Raise an error when a function parameter isn't read. */
 
@@ -71,4 +73,31 @@
 **  adding ? at the end of the variable makes it Optional
     example - taxYear?:number ... if((taxYear || 2022) < 2022) or
     taxYear = 2022 : number however ... if(taxYear < 2022)
+
+** DON'T TURN ON // "strictNullChecks": true, /* When type checking, take into account 'null' and 'undefined'. */
+
+**  NULLISH COALESCING: The ?? Operator in TypeScript
+    We can use this operator to provide a fallback value for a value that might be null or undefined. ExJS: speed: speed !== null ? speed : 30
+
+    **  TRUTHY & FALSY VALUES IN JS - when coerced to a Boolean. The ff. values are considered to be FALSY
+    *   false, 0, -0, 0n, Nan, "", null, undefined
+
+    **  PROVIDING FALLBACK VALUES with the ?? Operator
+        value ?? fallBackValue;
+
+        If LEFT operands is NULL or UNDEFINED, the ?? expression evaluates to the right operand:
+        null ?? "n/a"; ----//"n/a"
+        undefined ?? "n/a"; ----//"n/a"
+
+        OTHERWISE, the ?? expression evaluated to the left operand:
+        false ?? true; ---//false
+        0 ?? 100; ---//0
+        "" ?? "n/a"; ---//""
+        NaN ?? 0; ---//Nan
+
+    ** || the opossite of OTHERWISE above.  The fallback value for a nullable value. The expression evaluates the respective RIGHT operands. If first value is FALSY the right value will be USED.
+        false || true; ---//true
+        0 || 100; ---//100
+        "" || "n/a"; ---//"n/a"
+        NaN || 0; ---//0
 

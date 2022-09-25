@@ -96,12 +96,12 @@
 // ---------UNION Type ( | )
 //  We can give a variable or a function parameter more than one type
 // function kgToLbs(weight: number | string) : number {
-    //  Narrowing (Narrowing the Union Type into specific type)
-    // if(typeof weight === 'number')
-    //     return weight * 2.2;
-    // else
-        // return parseInt(weight)*2.2; or
-        // return +weight * 2.2;
+//  Narrowing (Narrowing the Union Type into specific type)
+// if(typeof weight === 'number')
+//     return weight * 2.2;
+// else
+// return parseInt(weight)*2.2; or
+// return +weight * 2.2;
 // }
 
 // kgToLbs(10);
@@ -184,18 +184,18 @@
 // Example TS
 // let speed: number | null = null; // user didn't provide value for speed
 // let ride = {
-    // Falsy in JS (undefined, null, '', 0, false)
-    // speed: speed || 30 // In JS-speed is truthy use speed otherwise 30
-    // speed: speed !== null ? speed : 30
-    // In Typescript -- Nullish Coalescing Operator (Nullish - Null/Undefined)
+// Falsy in JS (undefined, null, '', 0, false)
+// speed: speed || 30 // In JS-speed is truthy use speed otherwise 30
+// speed: speed !== null ? speed : 30
+// In Typescript -- Nullish Coalescing Operator (Nullish - Null/Undefined)
 //     speed: speed ?? 30 // similar to speed: speed !== null ? speed : 30
 // }
 
 // ---------TYPE ASSERTIONS--example: as HTMLInputElement
 // let phone = document.getElementById('phone') as HTMLInputElement; --OR
 // let phone = <HTMLInputElement> document.getElementById('phone');
-    // HTMLElement
-    // HTMLInputElement
+// HTMLElement
+// HTMLInputElement
 // phone.value
 
 // ---------THE UNKNOWN TYPE (UNKNOWN - typeof or instaceof)
@@ -206,11 +206,11 @@
 // }
 // for above as there's no type checking on it the app will crash and so will use UNKNOWN type
 // function render(document: unknown){
-    // Narrowing
-    // if(typeof document === 'string'){
-        //typeof only works for PRIMITIVE TYPES like String, Number & Number
-    // if(document instanceof WordDocument){
-        //instanceof works in CUSTOM Objects created in Classes
+// Narrowing
+// if(typeof document === 'string'){
+//typeof only works for PRIMITIVE TYPES like String, Number & Number
+// if(document instanceof WordDocument){
+//instanceof works in CUSTOM Objects created in Classes
 //         document.toUpperCase();
 //     }
 //     document.move();
@@ -218,24 +218,27 @@
 //     document.whateverWeWant();
 // }
 
-// ---------THE NEVER TYPE - represents values that NEVER occur.
-function processEvents(){
-    while(true){
-        // Read a message from a queue
-    }
-}
+// ---------THE NEVER TYPE - represents values that will NEVER occur.
 
-processEvents();
-console.log('Hello World');
+// function reject(message: string): never {
+//   throw new Error(message);
+// }
 
+// function processEvents(): never {
+//   while (true) {
+//     // Read a message from a queue
+//   }
+// }
 
+// reject("...");
+// console.log("Hello World");
 
+// function sayHi(): void{
+//     console.log('Hi') // Hi
+// }
 
-
-
-
-
-
+// let speech: void = sayHi();
+// console.log(speech); // undefined
 
 
 

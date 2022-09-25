@@ -101,3 +101,102 @@
         "" || "n/a"; ---//"n/a"
         NaN || 0; ---//0
 
+**  THE NEVER TYPE - indicates the values that will never occur.
+    The never type is used when you are sure that something is never going to occur. For example, you write a function which will not return to its end point or always throws an exception.
+    Example:
+    function throwError(errorMsg: string): never {
+            throw new Error(errorMsg);
+    }
+
+    function keepProcessing(): never {
+                while (true) {
+            console.log('I always does something and never ends.')
+        }
+    }
+    **  In the above example, the throwError() function throws an error and keepProcessing() function is always executing and never reaches an end point because the while loop never ends. Thus, never type is used to indicate the value that will never occur or return from a function.
+
+**  DIFFERENCE BETWEEN NEVER AND VOID
+    The void type can have undefined or null as a value where as never cannot have any value.
+    Example:
+    let something: void = null;
+    let nothing: never = null; Error: Type 'null' is not assignable to
+        type 'never'
+
+    **  In TS, a function that does not return a value, actually returns undefined. Example:
+    function sayHi(): void{
+        console.log('Hi') // Hi
+    }
+
+    let speech: void = sayHi();
+    console.log(speech); // undefined
+
+    **  speech is undefined, because the sayHi function internally returns undefined even if return type is void. If you use never type, speech:never will give a compile time error, as void is not assignable to never.
+
+**  TURN ON but FALSE- "allowUnreachableCode": false, /* Disable error reporting for unreachable code. */
+
+**  EXERCISES ON TYPES
+    1.) Define a type alias for representing users
+    let users = [
+        {
+            name: 'John Smith',
+            age: 30,
+            profession: 'Software Engineer'
+        },
+        {
+            name: 'Kate Muller',
+            age: 28
+        }
+    ]
+    **  ANSWER
+    type User = {
+        name:  string,
+        age:   number,
+        profession? :  string;
+    };
+
+    2.) Birds fly. Fish swim. A Pet can be a Bird or Fish. Use type aliases to represent these
+    type Bird = {
+        fly: () => void; // type of a method or a function
+    };
+
+    type Fish = {
+        swim: () => void;
+    }
+
+    type Pet = Bird | Fish;
+
+    const myBird: Bird = {
+        fly: () => {
+            ...
+        }
+    }
+
+    3.) Define a type for representing the days of week. Valid values are “Monday”, “Tuesday”, etc.
+
+    **  ANSWER
+    type DaysOfWeek = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday"
+
+    let myDay: DaysOfWeek = "Thursday"
+
+    4.) Simplify the following code snippets:
+    let user = getUser();
+    console.log(user && user.address ? user.address.street : undefined);
+    **  ANSWER
+    let user = getUser();
+    console.log(user?.address?.street);
+
+    let x = foo !== null && foo !== undefined ? foo : bar();
+    **  ANSWER
+    let x = foo ?? bar();
+
+    5.) What is the problem is this piece of code?
+    letvalue:unknown = 'a';
+    console.log(value.toUpperCase());
+
+    **  ANSWER
+    VALUE is declared as an UNKNOWN type. In order to call methods on an unknown object, we have to use TYPE NARROWING first:
+
+    let value : unknown = 'a';
+    if (typeof value === 'string')
+        console.log(value.toUpperCase());
+

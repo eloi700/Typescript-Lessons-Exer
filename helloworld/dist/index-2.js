@@ -77,7 +77,6 @@ class PersonName {
         this._fName = _fName;
         this._lName = _lName;
     }
-    ;
     get fullName() {
         return `${this._fName} ${this._lName}`;
     }
@@ -90,6 +89,85 @@ class PersonName {
         this._lName = parts[1];
     }
 }
-let person1 = new PersonName('Nom', 'Naja');
+let person1 = new PersonName("Nom", "Naja");
 console.log(person1.fullName);
+class seatAssignment {
+}
+let seats = new seatAssignment();
+seats.A1 = "Devie";
+seats["A2"] = 457;
+seats.A3 = "John";
+console.log(seats.A2);
+class Employees {
+    constructor(_firstName1, _lastName1, _jobTitle1) {
+        this._firstName1 = _firstName1;
+        this._lastName1 = _lastName1;
+        this._jobTitle1 = _jobTitle1;
+        Employees._headcount++;
+    }
+    get fullDetails() {
+        return `${this._firstName1} ${this._lastName1} ${this._jobTitle1}`;
+    }
+    static getheadcount() {
+        return Employees._headcount;
+    }
+}
+Employees._headcount = 0;
+let John = new Employees("John", "Reyes", "Software Developer");
+let Peter = new Employees("Peter", "Pan", "Sr. Software Developer");
+let Sonia = new Employees("Sonia", "Tan", "Junior Developer");
+let Ire = new Employees("Ire", "Mo", "Junior Developer");
+console.log(Employees.getheadcount());
+class PersonPassenger {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    getFullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+    describe() {
+        return `This is ${this.firstName} ${this.lastName}.`;
+    }
+}
+class Passenger extends PersonPassenger {
+    constructor(firstName, lastName, position) {
+        super(firstName, lastName);
+        this.position = position;
+        this.position = position;
+    }
+}
+let passenger = new Passenger("John", "Smith", "Web Developer");
+console.log(passenger.getFullName());
+console.log(passenger.describe());
+class People {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    get fullName() {
+        return this.firstName + " " + this.lastName;
+    }
+    walk() {
+        console.log("Walking");
+    }
+}
+class Student extends People {
+    constructor(firstName, lastName, idNumber) {
+        super(firstName, lastName);
+        this.idNumber = idNumber;
+    }
+    takeTest() {
+        console.log('Taking Test');
+    }
+}
+class Teacher extends People {
+    get fullName() {
+        return `Professor ${super.fullName}`;
+    }
+}
+let teacher = new Teacher('Mira', 'Obst');
+console.log(teacher.fullName);
 //# sourceMappingURL=index-2.js.map

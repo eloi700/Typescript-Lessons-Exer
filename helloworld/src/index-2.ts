@@ -20,7 +20,7 @@ class Account {
   }
 
   //Note: It is STILL inside of the Class Account - Declaring balance variable as PRIVATE
-  getBalance(): number{
+  getBalance(): number {
     return this._balance;
   }
 }
@@ -28,7 +28,7 @@ class Account {
 // CREATING OBJECT
 let account = new Account(1, "Mosh", 180); // passing values for the 3 props
 account.deposit(500);
-console.log(account.getBalance());
+console.log(account.getBalance()); // 680
 
 // console.log(account.balance); // 100
 // console.log(account); // Account { id: 1, owner: 'Mosh', balance: 100 }
@@ -49,7 +49,7 @@ class Employee {
 
 class SalesEmployee extends Employee {
   public department: string;
-//private department: string; // Since it is in PRIVATE, an error will be displayed Unused Locals - ts6133
+  //private department: string; // Since it is in PRIVATE, an error will be displayed Unused Locals - ts6133
 
   constructor(name: string, code: number, department: string) {
     super(name, code);
@@ -61,5 +61,80 @@ let emp = new SalesEmployee("John Smith", 123, "Sales");
 // emp.empCode; // Compiler Error - TS2445 (protected)
 console.log(emp.empName); // John Smith (public)
 console.log(emp.department); // Sales (public)
+
+// PARAMETER PROPERTIES - Reconstructing into more Concise Code (ex. as above)
+class AccountOne {
+  nickname?: string;
+
+  constructor(
+    public readonly id: number,
+    public owner: string,
+    private _balance: number
+  ) {}
+
+  deposit(amount: number): void {
+    if (amount <= 0) throw new Error("Invalid amount");
+    this._balance += amount;
+  }
+  getBalance(): number {
+    return this._balance;
+  }
+}
+let account1 = new AccountOne(1, "Mosh", 580);
+account1.deposit(500);
+console.log(account1.getBalance()); // 1080
+
+// GETTERS & SETTERS
+class Person {
+  constructor(
+    private _age: number,
+    private _firstName: string,
+    private _lastName: string
+  ) {}
+
+  public get age() {
+    return this._age;
+  }
+
+  public set age(theAge: number) {
+    if (theAge <= 0 || theAge >= 130) { // validation
+      throw new Error("The age is invalid");
+    }
+    this._age = theAge;
+  }
+
+  public getFullName(): string {
+    return `${this._firstName} ${this._lastName}`;
+  }
+}
+
+let person = new Person(20, "Naja", "Kayo");
+console.log(person.age);
+console.log(person.getFullName());
+
+// Another example for Getters & Setters
+class PersonName {
+  constructor(
+    private _fName: string,
+    private _lName?: string,
+  ) {};
+
+  public get fullName() {
+    return `${this._fName} ${this._lName}`;
+  }
+
+  public set fullName(name: string) {
+    let parts = name.split(" ");
+    if (parts.length != 2) { // validation
+      throw new Error("Invalid name format: first last");
+    }
+    this._fName = parts[0];
+    this._lName = parts[1];
+  }
+}
+
+// let person1 = new PersonName('Nom');// Nom undefined
+let person1 = new PersonName('Nom', 'Naja');
+console.log(person1.fullName); // Nom Naja
 
 

@@ -160,7 +160,7 @@ class Student extends People {
         this.idNumber = idNumber;
     }
     takeTest() {
-        console.log('Taking Test');
+        console.log("Taking Test");
     }
 }
 class Teacher extends People {
@@ -168,6 +168,40 @@ class Teacher extends People {
         return `Professor ${super.fullName}`;
     }
 }
-let teacher = new Teacher('Mira', 'Obst');
-console.log(teacher.fullName);
+class Principal extends People {
+    get fullName() {
+        return `Principal ${super.fullName}`;
+    }
+}
+printNames([new Student('John', 'Schneider', 101),
+    new Teacher('Tom', 'Roladen'),
+    new Principal('Jerry', 'Braten')]);
+function printNames(people) {
+    for (let person of people)
+        console.log(person.fullName);
+}
+class Animal {
+    makeSound() {
+        console.log("ANIMALS SOUND");
+    }
+}
+class Dog extends Animal {
+    makeSound() {
+        console.log(("BARK"));
+    }
+}
+class Cat extends Animal {
+    makeSound() {
+        console.log(("MEOW"));
+    }
+}
+function makeAnimalSound(animal) {
+    animal.makeSound();
+}
+let animal = new Animal();
+let animalFirst = new Dog();
+let animalSecond = new Cat();
+makeAnimalSound(animal);
+makeAnimalSound(animalFirst);
+makeAnimalSound(animalSecond);
 //# sourceMappingURL=index-2.js.map

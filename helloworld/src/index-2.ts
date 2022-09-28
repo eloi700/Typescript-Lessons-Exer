@@ -215,7 +215,7 @@ class People {
     return this.firstName + " " + this.lastName;
   }
 
-  walk() {
+  protected walk() {
     console.log("Walking");
   }
 }
@@ -225,23 +225,71 @@ class Student extends People {
     super(firstName, lastName);
   }
 
-  takeTest(){
-    console.log('Taking Test');
-
+  takeTest() {
+    // this.walk() // not possible if walk() method is private
+    this.walk() // walk() method is protected
+    console.log("Taking Test");
   }
 }
 // OVERRIDING below is not REQUIRED instead adding Teacher class
 // let student = new Student('Erika', 'Schneider', 250)
 // console.log(student);
 
-class Teacher extends People{
-     override get fullName() {
-        return `Professor ${super.fullName}`
-      }
+// POLYMORPHISM
+class Teacher extends People {
+  override get fullName() {
+    return `Professor ${super.fullName}`;
+  }
 }
 
-let teacher = new Teacher('Mira', 'Obst')
-console.log(teacher.fullName);// fullName is from People class
+class Principal extends People{
+  override get fullName() {
+    return `Principal ${super.fullName}`;
+  }
+}
+// let teacher = new Teacher("Mira", "Obst");
+// console.log(teacher.fullName); // fullName is from People class
 
+printNames([new Student('John', 'Schneider', 101),
+            new Teacher('Tom', 'Roladen'),
+            new Principal('Jerry', 'Braten')]
+          );
+
+function printNames(people: People[]){
+  for(let person of people)
+  console.log(person.fullName);
+}
+
+// POLYMORPHISM - Another Example. It takes same class & mthods with different implementations, creating many forms.
+class Animal {
+  makeSound(){
+    console.log("ANIMALS SOUND");
+  }
+}
+
+class Dog extends Animal{
+  override makeSound(){
+    console.log(("BARK"));
+  }
+}
+
+class Cat extends Animal{
+  override makeSound(){
+    console.log(("MEOW"));
+  }
+}
+
+function makeAnimalSound(animal: Animal){
+  animal.makeSound();
+}
+
+let animal = new Animal();
+makeAnimalSound(animal); //ANIMALS SOUND
+
+let animalFirst = new Dog();
+makeAnimalSound(animalFirst); //BARK
+
+let animalSecond = new Cat();
+makeAnimalSound(animalSecond); //MEOW
 
 

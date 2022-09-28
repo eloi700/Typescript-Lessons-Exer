@@ -227,7 +227,7 @@ class Student extends People {
 
   takeTest() {
     // this.walk() // not possible if walk() method is private
-    this.walk() // walk() method is protected
+    this.walk(); // walk() method is protected & can be inherited
     console.log("Taking Test");
   }
 }
@@ -242,7 +242,7 @@ class Teacher extends People {
   }
 }
 
-class Principal extends People{
+class Principal extends People {
   override get fullName() {
     return `Principal ${super.fullName}`;
   }
@@ -250,36 +250,36 @@ class Principal extends People{
 // let teacher = new Teacher("Mira", "Obst");
 // console.log(teacher.fullName); // fullName is from People class
 
-printNames([new Student('John', 'Schneider', 101),
-            new Teacher('Tom', 'Roladen'),
-            new Principal('Jerry', 'Braten')]
-          );
+printNames([
+  new Student("John", "Schneider", 101),
+  new Teacher("Tom", "Roladen"),
+  new Principal("Jerry", "Braten"),
+]);
 
-function printNames(people: People[]){
-  for(let person of people)
-  console.log(person.fullName);
+function printNames(people: People[]) {
+  for (let person of people) console.log(person.fullName);
 }
 
 // POLYMORPHISM - Another Example. It takes same class & mthods with different implementations, creating many forms.
 class Animal {
-  makeSound(){
+  makeSound() {
     console.log("ANIMALS SOUND");
   }
 }
 
-class Dog extends Animal{
-  override makeSound(){
-    console.log(("BARK"));
+class Dog extends Animal {
+  override makeSound(): void {
+    console.log("BARK");
   }
 }
 
-class Cat extends Animal{
-  override makeSound(){
-    console.log(("MEOW"));
+class Cat extends Animal {
+  override makeSound(): void {
+    console.log("MEOW");
   }
 }
 
-function makeAnimalSound(animal: Animal){
+function makeAnimalSound(animal: Animal) {
   animal.makeSound();
 }
 
@@ -291,5 +291,92 @@ makeAnimalSound(animalFirst); //BARK
 
 let animalSecond = new Cat();
 makeAnimalSound(animalSecond); //MEOW
+
+// ABSTRACT CLASS & METHODS
+abstract class Shape {
+  constructor(public color: string) {}
+  abstract render(): void;
+}
+
+class Circle extends Shape {
+  constructor(public radius: number, color: string) {
+    super(color);
+  }
+  override render(): void {
+    console.log("Rendering a circle");
+  }
+}
+
+// let shape = new Shape('red'); //cannot create an instance of an abstract class
+// shape.render();
+
+// INTERFACES
+// abstract class Calendar {
+//   constructor(public name: string){}
+//   // implimentations are not the same
+//   abstract addEvent(): void;
+//   abstract removeEvent(): void;
+// }
+
+interface Calendar {
+  name: string;
+  addEvent(): void;
+  removeEvent(): void;
+}
+
+//We use interfaces to define the shape of objects.
+interface CloudCalendar extends Calendar {
+  sync(): void;
+}
+
+class GoogleCalendar implements Calendar {
+  constructor(public name: string) {}
+
+  addEvent(): void {
+    throw new Error("Method not implemented.");
+  }
+  removeEvent(): void {
+    throw new Error("Method not implemented.");
+  }
+}
+
+// INTERFACES EXTENDING CLASSES
+class Control {
+  constructor(private state: boolean) {
+  } // error not read
+}
+
+interface StatefulControl extends Control {
+  enable(): void;
+}
+
+class Button extends Control implements StatefulControl {
+  enable() {}
+}
+class TextBox extends Control implements StatefulControl {
+  enable() {}
+}
+class Label extends Control {}
+
+Error: cannot implement
+class Chart implements StatefulControl {
+  enable() {}
+}
+
+// EXERCISES:
+// Number 1
+class Logger {
+  constructor(private _file: string) {}
+
+  public write(logMessage: string) {
+    const fileDescriptor = open(this._file, 'w');
+    append(fileDescriptor, logMessage);
+    close(fileDescriptor);
+  }
+}
+let logger = new Logger('my-log.txt');
+logger.write('hello');
+
+
 
 

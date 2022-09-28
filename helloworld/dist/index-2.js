@@ -160,6 +160,7 @@ class Student extends People {
         this.idNumber = idNumber;
     }
     takeTest() {
+        this.walk();
         console.log("Taking Test");
     }
 }
@@ -173,9 +174,11 @@ class Principal extends People {
         return `Principal ${super.fullName}`;
     }
 }
-printNames([new Student('John', 'Schneider', 101),
-    new Teacher('Tom', 'Roladen'),
-    new Principal('Jerry', 'Braten')]);
+printNames([
+    new Student("John", "Schneider", 101),
+    new Teacher("Tom", "Roladen"),
+    new Principal("Jerry", "Braten"),
+]);
 function printNames(people) {
     for (let person of people)
         console.log(person.fullName);
@@ -187,21 +190,66 @@ class Animal {
 }
 class Dog extends Animal {
     makeSound() {
-        console.log(("BARK"));
+        console.log("BARK");
     }
 }
 class Cat extends Animal {
     makeSound() {
-        console.log(("MEOW"));
+        console.log("MEOW");
     }
 }
 function makeAnimalSound(animal) {
     animal.makeSound();
 }
 let animal = new Animal();
-let animalFirst = new Dog();
-let animalSecond = new Cat();
 makeAnimalSound(animal);
+let animalFirst = new Dog();
 makeAnimalSound(animalFirst);
+let animalSecond = new Cat();
 makeAnimalSound(animalSecond);
+class Shape {
+    constructor(color) {
+        this.color = color;
+    }
+}
+class Circle extends Shape {
+    constructor(radius, color) {
+        super(color);
+        this.radius = radius;
+    }
+    render() {
+        console.log("Rendering a circle");
+    }
+}
+class GoogleCalendar {
+    constructor(name) {
+        this.name = name;
+    }
+    addEvent() {
+        throw new Error("Method not implemented.");
+    }
+    removeEvent() {
+        throw new Error("Method not implemented.");
+    }
+}
+class Control {
+}
+class Button extends Control {
+    enable() { }
+}
+class TextBox extends Control {
+    enable() { }
+}
+class Label extends Control {
+}
+class Logger {
+    constructor(_file) {
+        this._file = _file;
+    }
+    get messages() {
+        return this._file;
+    }
+}
+let logger = new Logger("Howdy!");
+console.log(logger.messages);
 //# sourceMappingURL=index-2.js.map

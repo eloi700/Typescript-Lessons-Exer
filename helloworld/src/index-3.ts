@@ -250,9 +250,84 @@ function echo103<T extends Person102>(value: T): T{
 echo103(new Person102('Philip'));
 echo103(new Customer('Anna'));
 
-// EXTENDING GENERIC CLASSES
+// EXTENDING GENERIC CLASSES / KEYOF OPERATOR
+// Example-1: An E-Commerce Application(products, categories, orders etc.)
 interface Product101{
     name: string;
     price: number;
 }
+
+class Store<T>{
+    protected _objects: T[] = []
+
+    add(obj: T): void{
+        this._objects.push(obj)
+    }
+
+    // T is Product
+    // keyof T => 'name' | 'price' (Union of Properties of Given Time)
+    find(property: keyof T, value: unknown): T | undefined{
+        return this._objects.find(obj => obj[property] === value);
+    }
+}
+
+let store = new Store<Product101>();
+store.add({name:'a', price: 1});
+store.find('name', 'a');
+store.find('price', 1);
+// store.find('nonExistingProperty', 1);//Program will crash as there is product name mentioned to find -> Need to use keyof Operator in Property- find() method and it will show an Error.
+
+// Pass on the Generic Type Parameter
+class CompressibleStore<T> extends Store<T>{
+    compress(){}
+}
+
+// Restrict the generic type Parameter
+class SearchableStore<T extends {name: string}> extends Store<T>{
+
+    findName(name: string): T | undefined{
+        return this._objects.find(obj => obj.name === name);
+        //find method that needs a predicate which is an arrow function
+        //that takes an object and returns a boolean value.
+        //finding the first obj which is true / filter(searching for all where the search is true.)
+    }
+}
+
+// Fix the generic type parameter
+class ProductStore extends Store<Product>{
+    // filterByCategory(category: string): Product[]{
+    //     return[];
+    // }
+}
+
+// TYPE MAPPING
+interface Product200{
+    prodName: string;
+    prodPrice: number;
+}
+
+// Use type alias
+// type ReadOnlyProduct ={ change into Generic to add others like customer...
+type ReadOnly<T> ={
+    // Index Signature
+    // keyof Operator - to get all the properties and keys of the Product type
+    // [Property in keyof Product] : Product[Property] OR
+    readonly [K in keyof T] : T[K]
+}
+// Optional Properties
+type Optional<T> ={
+    [K in keyof T]?: T[K]
+}
+
+type Nullable<T> ={
+    [K in keyof T]: T[K] | null // possibility is endless
+}
+
+let product200: ReadOnly<Product200> = {
+    prodName: 'a',
+    prodPrice: 1
+}
+
+// product101.name ='a'
+
 

@@ -342,9 +342,9 @@ class GoogleCalendar implements Calendar {
 
 // INTERFACES EXTENDING CLASSES
 class Control {
-  constructor(private state: boolean) {
+  // constructor(private state: boolean) {
   } // error not read
-}
+// }
 
 interface StatefulControl extends Control {
   enable(): void;
@@ -358,24 +358,24 @@ class TextBox extends Control implements StatefulControl {
 }
 class Label extends Control {}
 
-Error: cannot implement
-class Chart implements StatefulControl {
-  enable() {}
-}
+// Error: cannot implement
+// class Chart implements StatefulControl {
+//   enable() {}
+// }
 
 // EXERCISES:
 // Number 1
-class Logger {
-  constructor(private _file: string) {}
+// class Logger {
+//   constructor(private _file: string) {}
 
-  public write(logMessage: string) {
-    const fileDescriptor = open(this._file, 'w');
-    append(fileDescriptor, logMessage);
-    close(fileDescriptor);
-  }
-}
-let logger = new Logger('my-log.txt');
-logger.write('hello');
+//   public write(logMessage: string) {
+    // const fileDescriptor = open(this._file, 'w');
+    // append(fileDescriptor, logMessage);
+    // close(fileDescriptor);
+//   }
+// }
+// let logger = new Logger('my-log.txt');
+// logger.write('hello');
 
 
 

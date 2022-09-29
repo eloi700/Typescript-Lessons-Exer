@@ -242,14 +242,4 @@ class TextBox extends Control {
 }
 class Label extends Control {
 }
-class Logger {
-    constructor(_file) {
-        this._file = _file;
-    }
-    get messages() {
-        return this._file;
-    }
-}
-let logger = new Logger("Howdy!");
-console.log(logger.messages);
 //# sourceMappingURL=index-2.js.map

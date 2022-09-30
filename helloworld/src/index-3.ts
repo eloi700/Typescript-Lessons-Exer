@@ -265,7 +265,7 @@ class Store<T>{
     }
 
     // T is Product
-    // keyof T => 'name' | 'price' (Union of Properties of Given Time)
+    // keyofT => 'name' | 'price' (Union of Properties of Given Time)
     find(property: keyof T, value: unknown): T | undefined{
         return this._objects.find(obj => obj[property] === value);
     }
@@ -327,7 +327,5 @@ let product200: ReadOnly<Product200> = {
     prodName: 'a',
     prodPrice: 1
 }
-
-// product101.name ='a'
 
 

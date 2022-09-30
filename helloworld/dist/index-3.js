@@ -102,6 +102,60 @@ function merging(obj1, obj2) {
         ...obj2
     };
 }
-let people = merge({ name: 'John' }, 85);
+let people = merge({ name: 'John' }, { age: 25 });
 console.log(people);
+function echo(value) {
+    return value;
+}
+echo(5);
+echo("Boom");
+function echo101(value) {
+    return value;
+}
+echo101({ name: "John" });
+function echo102(value) {
+    return value;
+}
+echo102({ name: "Jane" });
+class Person102 {
+    constructor(name) {
+        this.name = name;
+    }
+}
+class Customer extends Person102 {
+}
+function echo103(value) {
+    return value;
+}
+echo103(new Person102('Philip'));
+echo103(new Customer('Anna'));
+class Store {
+    constructor() {
+        this._objects = [];
+    }
+    add(obj) {
+        this._objects.push(obj);
+    }
+    find(property, value) {
+        return this._objects.find(obj => obj[property] === value);
+    }
+}
+let store = new Store();
+store.add({ name: 'a', price: 1 });
+store.find('name', 'a');
+store.find('price', 1);
+class CompressibleStore extends Store {
+    compress() { }
+}
+class SearchableStore extends Store {
+    findName(name) {
+        return this._objects.find(obj => obj.name === name);
+    }
+}
+class ProductStore extends Store {
+}
+let product200 = {
+    prodName: 'a',
+    prodPrice: 1
+};
 //# sourceMappingURL=index-3.js.map

@@ -17,30 +17,30 @@
 // class ProfileComponent{}
 
 // PARAMETERIZED DECORATORS (DECORATOR FACTORY)*********************************
-// type ComponentOptions = {
-//     selector: string
-// }
+type ComponentOptions = {
+    selector: string
+}
 
-// function Component(options: ComponentOptions) {
-//   return (constructor: Function) => {
-//     console.log("Component Decorator Called");
-//     constructor.prototype.options = options; // a property
-//     constructor.prototype.uniqueId = Date.now(); // uniqueId a property
-//     constructor.prototype.insertInDOM = () => {
-//       console.log("Inserting the component in the DOM");
-//     };
-//   };
-// }
+function Component(options: ComponentOptions) {
+  return (constructor: Function) => {
+    console.log("Component Decorator Called");
+    constructor.prototype.options = options; // a property
+    constructor.prototype.uniqueId = Date.now(); // uniqueId a property
+    constructor.prototype.insertInDOM = () => {
+      console.log("Inserting the component in the DOM");
+    };
+  };
+}
 
-//  Decorator Composition
-// function Pipe(constructor: Function){
-//     console.log('pipe decorator called');
-//     constructor.prototype.pipe = true;
-// }
+//  Decorator Composition *****************************************************
+function Pipe(constructor: Function){
+    console.log('pipe decorator called');
+    constructor.prototype.pipe = true;
+}
 
-// @Component({selector: '#my-profile'})
-// @Pipe
-// class ProfileComponent {}
+@Component({selector: '#my-profile'})
+@Pipe
+class ProfileComponent {}
 
 //  METHOD DECORATORS *******************************************************
 /*  With this method only 1 type of parameter can be used only example:

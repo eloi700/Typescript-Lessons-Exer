@@ -135,3 +135,60 @@ console.log(person200.fullName); // ELOI TENNERT
 
 // PROPERTY DECORATORS *****************************************************
 // Define a decorator for enhancing a Property
+function MinLength(length: number){
+    return (target: any, propertyName: string) => {
+        let value: string; //if value is valid to store it here
+        // property descriptor for TARGET property
+        const descriptor: PropertyDescriptor = {
+            //Ctrl+space to see the property & methods of descriptor obj.
+            get() {return value;}, // to return the value
+            set(newValue: string){ // for target property
+                if(newValue.length <= length) // data validation
+                    throw new Error(`${propertyName} should be at least ${length} characters long.`)
+                value = newValue
+            }
+        };
+
+        Object.defineProperty(target, propertyName, descriptor);
+    }
+}
+
+class User{
+    @MinLength(5)
+    password: string;
+
+    constructor(password: string){
+        this.password = password;
+    }
+}
+
+let user = new User('taasnookahitkanino')
+console.log(user.password);
+
+// PARAMETER DECORATORS ***************************************************
+type WatchedParameter = {
+    methodName: string,
+    parameterIndex: number
+};
+
+// Array for watch parameters
+const watchedParameters: WatchedParameter[] = [];
+
+// 3 parameter names in the function
+function Watch(target: any, methodName: string, parameterIndex: number){
+    //storing object into the array
+    watchedParameters.push({
+        methodName,
+        parameterIndex
+    })
+}
+
+class Vehicle {
+    // @Watch - parameter decorator for watching this parameter
+    move(@Watch speed: number){}
+}
+
+console.log(watchedParameters);
+//[ { methodName: 'move', parameterIndex: 0 } ]
+
+

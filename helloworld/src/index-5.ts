@@ -6,6 +6,6 @@
 // import Store, { Format } from ".storage"; // default export
 
 // Re-export from shapes folder
-import { Circle, Square} from "./shapes/index101";
+// import { Circle, Square} from "./shapes/index101";
 
 

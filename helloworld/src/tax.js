@@ -10,9 +10,9 @@
 
 //// @ts-nocheck
 
-export function calculateTax(income){
-    return income * 0.3;
-}
+// export function calculateTax(income){
+//     return income * 0.3;
+// }
 
 // by default there's is not type Checking
 
